@@ -1,0 +1,5 @@
+server {
+    location ~ {{ env['LOCATION'] }} {
+        proxy_pass {{ env['PROXY_PATH'] }};
+    }
+}
