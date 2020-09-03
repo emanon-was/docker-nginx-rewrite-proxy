@@ -1,6 +1,12 @@
 FROM nginx:1.19.2-alpine
-RUN RUN apk add --no-cache python python-pip
-COPY ./docker-entrypoint /app
-RUN ln -s /docker-entrypoint.d/30-override-conf.sh /app/docker-entrypoint.sh
+
 WORKDIR /app
+
+COPY ./docker-entrypoint/requirements.txt /app
+RUN apk add --no-cache python3 py3-pip \
+  && pip install -r requirements.txt
+COPY ./docker-entrypoint /app
+
+RUN ln -s /app/docker-entrypoint.sh /docker-entrypoint.d/01-override-conf.sh
+
 

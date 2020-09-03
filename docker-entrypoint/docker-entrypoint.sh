@@ -1,4 +1,4 @@
 #!/bin/sh
 
-python nginx-conf.py > /etc/nginx/
+python3 nginx-conf.py > /etc/nginx/conf.d/default.conf
 

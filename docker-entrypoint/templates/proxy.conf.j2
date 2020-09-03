@@ -1,5 +1,6 @@
 server {
-    location ~ {{ env['LOCATION'] }} {
-        proxy_pass {{ env['PROXY_PATH'] }};
-    }
+     location ~ ^{{ env['LOCATION'] }}(/.*)$ {
+        rewrite ^{{ env['LOCATION'] }}(/.*)$ $1 break;
+        proxy_pass {{ env['PROXY_PASS'] }};
+     }
 }
